@@ -19,7 +19,8 @@
 </template>
 
 <script>
-import {login} from "../../api/user";
+//import {Message} from "element-ui";
+
 import {Message} from "element-ui";
 
 export default {
@@ -42,12 +43,14 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
-          login(this.form).then(res => {
-            res.data;
-            Message.success('登陆成功');
-          }).catch(err => {
-            Message.error(err)
-          })
+          this.$store.dispatch('user/login', this.form)
+              .then(() => {
+                Message.success('登陆成功')
+                this.$router.replace('/')
+
+              }, (error) => {
+                Message.error(error)
+              })
               .finally(() => {
                 this.loading = false
               })
