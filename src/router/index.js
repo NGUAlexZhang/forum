@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
+import layout from "../layout";
 Vue.use(VueRouter)
 export const constantRoutes = [
     {
@@ -12,6 +12,11 @@ export const constantRoutes = [
         path: '/register',
         component: () => import('../views/Register/index'),
         name: 'register'
+    },
+    {
+        path:'/',
+        component:layout,
+        name:'layout'
     }
 ]
 
