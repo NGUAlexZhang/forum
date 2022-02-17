@@ -1,5 +1,6 @@
 import {login} from "../../api/user";
 import {getToken, setToken,removeToken} from "../../utils/auth";
+import router from "@/router";
 //import {Message} from "element-ui";
 
 const state = {
@@ -43,7 +44,7 @@ const actions = {
         console.log(444)
         removeToken()
         //this.$router.push('/').then()
-        return this.$router.replace('/login')
+        return router.replace('/login')
     }
 }
 export default {
