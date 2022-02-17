@@ -20,11 +20,13 @@ export default {
   color: #333;
   text-align: center;
   line-height: 60px;
+  min-width: 500px;
 }
 .el-main {
   background-color: #E9EEF3;
   color: #333;
   text-align: center;
   line-height: 160px;
+  min-width: 640px;
 }
 </style>

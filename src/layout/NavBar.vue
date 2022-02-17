@@ -42,13 +42,14 @@ export default {
       console.log(key, keyPath);
     },
     logout(){
-      console.log(2333)
       this.$store.dispatch('user/logout').then(()=>Message.success('已退出'))
-
     }
   }
 }
 </script>
 
 <style scoped>
+.el-menu{
+  min-width: 600px;
+}
 </style>

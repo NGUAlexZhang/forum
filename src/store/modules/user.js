@@ -1,7 +1,6 @@
 import {login} from "../../api/user";
 import {getToken, setToken,removeToken} from "../../utils/auth";
 import router from "@/router";
-//import {Message} from "element-ui";
 
 const state = {
     token: getToken(),
@@ -40,10 +39,9 @@ const actions = {
                 })
         })
     },
-    logout() {
-        console.log(444)
+    logout({commit}) {
         removeToken()
-        //this.$router.push('/').then()
+        commit('SET_TOKEN','')
         return router.replace('/login')
     }
 }
