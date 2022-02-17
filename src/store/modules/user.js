@@ -1,5 +1,6 @@
 import {login} from "../../api/user";
-import {getToken, setToken} from "../../utils/auth";
+import {getToken, setToken,removeToken} from "../../utils/auth";
+//import {Message} from "element-ui";
 
 const state = {
     token: getToken(),
@@ -37,6 +38,12 @@ const actions = {
                     reject(error)
                 })
         })
+    },
+    logout() {
+        console.log(444)
+        removeToken()
+        //this.$router.push('/').then()
+        return this.$router.replace('/login')
     }
 }
 export default {

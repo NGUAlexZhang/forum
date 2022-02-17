@@ -22,11 +22,13 @@
     </el-submenu>
     <el-menu-item index="3" disabled>消息中心</el-menu-item>
     <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>
-    <div><el-button round size="small">退出</el-button></div>
+    <div style="float: right"><el-button round size="small" @click="logout">logout</el-button></div>
   </el-menu>
 </template>
 
 <script>
+import {Message} from "element-ui";
+
 export default {
   name: "NavBar",
   data() {
@@ -38,6 +40,11 @@ export default {
   methods: {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
+    },
+    logout(){
+      console.log(2333)
+      this.$store.dispatch('user/logout').then(()=>Message.success('已退出'))
+
     }
   }
 }
