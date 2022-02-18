@@ -50,6 +50,6 @@ export default {
 
 <style scoped>
 .el-menu{
-  min-width: 600px;
+  min-width: 560px;
 }
 </style>
