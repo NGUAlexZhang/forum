@@ -15,3 +15,9 @@ export const register = data => {
         data: data
     })
 }
+export const getInfo=()=>{
+    return request({
+        url:'/self/user',
+        method:'get'
+    })
+}

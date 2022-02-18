@@ -1,5 +1,6 @@
 import axios from "axios";
 import {Message} from "element-ui";
+import {getToken} from "@/utils/auth";
 
 const service = axios.create({
     baseURL: 'https://3yya.com/u/13a3daa9198dc45a/bbs/app',
@@ -7,6 +8,8 @@ const service = axios.create({
 })
 service.interceptors.request.use(
     config => {
+        const token = getToken()
+        if (token) config.headers['Authorization'] = token
         return config
     }
     ,

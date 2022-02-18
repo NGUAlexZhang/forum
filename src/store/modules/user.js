@@ -1,12 +1,13 @@
-import {login} from "../../api/user";
-import {getToken, setToken,removeToken} from "../../utils/auth";
+import {getInfo, login} from "../../api/user";
+import {getToken, setToken, removeToken} from "../../utils/auth";
 import router from "@/router";
 
 const state = {
     token: getToken(),
     name: '',
     introduction: '',
-    roles: []
+    roles: [],
+    id: ''
 }
 const mutations = {
     SET_TOKEN: (state, token) => {
@@ -20,14 +21,30 @@ const mutations = {
     },
     SET_ROLES: (state, roles) => {
         state.roles = roles
+    },
+    SET_ID: (state, id) => {
+        state.id = id
     }
 }
 const actions = {
+    getInfo({commit}) {
+        return new Promise((resolve, reject) => {
+            getInfo().then(res=>{
+                const {user_id,username}=res
+                commit('SET_ID',user_id)
+                commit('SET_NAME',username)
+                resolve(res)
+            })
+                .catch(()=>{
+                    reject('error token')
+                })
+        })
+    },
     login({commit}, userInfo) {
         const {username, password} = userInfo
         //console.log(username,password)
         return new Promise((resolve, reject) => {
-            const data={username:username,password:password}
+            const data = {username: username, password: password}
             login(data).then(res => {
                 console.log(res)
                 commit('SET_TOKEN', res.token)
@@ -41,12 +58,12 @@ const actions = {
     },
     logout({commit}) {
         removeToken()
-        commit('SET_TOKEN','')
+        commit('SET_TOKEN', '')
         return router.replace('/login')
     }
 }
 export default {
-    namespaced:true,
+    namespaced: true,
     state,
     mutations,
     actions
